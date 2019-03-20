@@ -49,13 +49,17 @@ function tweetValidation(data) {
   return true;
 }
 
-$(document).ready(function() {
+function loadTweets() {
   $.ajax({
     type: "GET",
     url: "/tweets"
   }).done(function(response) {
     renderTweets(response);
   });
+}
+
+$(document).ready(function() {
+  loadTweets();
   $("#submit-tweet").on("submit", function(event) {
     event.preventDefault();
     if (tweetValidation($("textarea"))) {
@@ -68,7 +72,7 @@ $(document).ready(function() {
           type: "GET",
           url: "/tweets"
         }).done(function(response) {
-          renderTweets(response);
+          loadTweets(response);
         });
       });
     }
