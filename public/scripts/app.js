@@ -38,6 +38,17 @@ function renderTweets(data) {
   });
 }
 
+function tweetValidation(data) {
+  if (data.val().length === 0) {
+    alert("Can not post empty tweet!");
+    return false;
+  } else if (data.val().length > 140) {
+    alert("Tweet is too long!");
+    return false;
+  }
+  return true;
+}
+
 $(document).ready(function() {
   $.ajax({
     type: "GET",
@@ -47,10 +58,19 @@ $(document).ready(function() {
   });
   $("#submit-tweet").on("submit", function(event) {
     event.preventDefault();
-    $.ajax({
-      type: "POST",
-      url: "/tweets",
-      data: $(this).serialize()
-    });
+    if (tweetValidation($("textarea"))) {
+      $.ajax({
+        type: "POST",
+        url: "/tweets",
+        data: $(this).serialize()
+      }).done(function(response) {
+        $.ajax({
+          type: "GET",
+          url: "/tweets"
+        }).done(function(response) {
+          renderTweets(response);
+        });
+      });
+    }
   });
 });
