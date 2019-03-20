@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $("textarea")
+  $("#tweet-area")
     .keyup(function() {
       let value = $(this).val().length;
       $("span.counter").text(140 - value);
@@ -7,6 +7,9 @@ $(document).ready(function() {
         $("span.counter").css("color", "red");
       } else {
         $("span.counter").css("color", "black");
+      }
+      if (value === 0) {
+        $("span.counter").text(140);
       }
     })
     .keyup();

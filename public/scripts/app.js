@@ -99,6 +99,7 @@ $(document).ready(function() {
       });
       errorDisplay(null);
       $("#tweet-area").val("");
+      $("#counter").text(140);
     }
   });
   $("#Compose").on("click", function(event) {
