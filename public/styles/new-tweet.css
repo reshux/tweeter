@@ -22,6 +22,7 @@
   /* float: right; */
   font-style: italic;
   padding-right: 10px;
+  float: right;
 }
 
 .container .new-tweet input {

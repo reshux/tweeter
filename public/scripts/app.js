@@ -40,13 +40,25 @@ function renderTweets(data) {
 
 function tweetValidation(data) {
   if (data.val().length === 0) {
-    alert("Can not post empty tweet!");
+    errorDisplay("empty");
     return false;
   } else if (data.val().length > 140) {
-    alert("Tweet is too long!");
+    errorDisplay("long");
     return false;
   }
   return true;
+}
+
+function errorDisplay(errorType) {
+  if (errorType === "empty") {
+    $("#msg-display").text("Empty tweet!");
+  }
+  if (errorType === "long") {
+    $("#msg-display").text("Too long!");
+  }
+  if (errorType === null) {
+    $("#msg-display").text("");
+  }
 }
 
 function loadTweets() {
@@ -72,7 +84,7 @@ $(document).ready(function() {
   createButton("Compose");
   $("#submit-tweet").on("submit", function(event) {
     event.preventDefault();
-    if (tweetValidation($("textarea"))) {
+    if (tweetValidation($("#tweet-area"))) {
       $.ajax({
         type: "POST",
         url: "/tweets",
@@ -85,6 +97,8 @@ $(document).ready(function() {
           loadTweets(response);
         });
       });
+      errorDisplay(null);
+      $("#tweet-area").val("");
     }
   });
   $("#Compose").on("click", function(event) {

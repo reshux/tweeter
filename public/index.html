@@ -52,8 +52,15 @@
             name="text"
             placeholder="What are you humming about?"
           ></textarea>
-          <input type="submit" value="Tweet" action="/tweets" />
+          <input
+            id="tweet-button"
+            type="submit"
+            value="Tweet"
+            action="/tweets"
+            !disabled
+          />
           <span class="counter">140</span>
+          <span id="msg-display"></span>
         </form>
       </section>
       <section id="tweet-container"></section>
