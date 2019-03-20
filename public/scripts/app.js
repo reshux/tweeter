@@ -58,8 +58,18 @@ function loadTweets() {
   });
 }
 
+function createButton(nameTag) {
+  const $button = $("<input>")
+    .attr("id", nameTag)
+    .attr("type", "submit")
+    .attr("value", nameTag);
+  $("#nav-bar").append($button);
+}
+
 $(document).ready(function() {
   loadTweets();
+  $(".new-tweet").hide();
+  createButton("Compose");
   $("#submit-tweet").on("submit", function(event) {
     event.preventDefault();
     if (tweetValidation($("textarea"))) {
@@ -76,5 +86,10 @@ $(document).ready(function() {
         });
       });
     }
+  });
+  $("#Compose").on("click", function(event) {
+    $(".new-tweet").slideToggle(function() {
+      $("#tweet-area").focus();
+    });
   });
 });
