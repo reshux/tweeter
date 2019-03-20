@@ -21,3 +21,10 @@
   padding-left: 10px;
   vertical-align: inherit;
 }
+
+#nav-bar #Compose {
+  float: right;
+  vertical-align: inherit;
+  height: 50px;
+  margin-top: 15px;
+}
