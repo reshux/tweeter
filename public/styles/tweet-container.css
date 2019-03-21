@@ -61,3 +61,19 @@ article.tweet:hover {
   border: 1px solid black;
   opacity: 1;
 }
+
+article.tweet .icons {
+  opacity: 0;
+  float: right;
+  padding-top: 7px;
+  padding-right: 10px;
+  transition: all 100ms linear;
+}
+
+article.tweet:hover .icons {
+  opacity: 1;
+}
+
+article.tweet .material-icons {
+  color: #00a087;
+}
