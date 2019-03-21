@@ -1,8 +1,7 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
+// This function creates the necessary DOM tree for a tweet
+// to display properly. I know that we could use ES6 conventions
+// to simply carryover some HTML code but I wanted to do it this
+// way to practice jQuery;
 
 function createTweetElement(tweet) {
   const $tweet = $("<article>")
@@ -25,12 +24,30 @@ function createTweetElement(tweet) {
       $("<footer>").append(
         $("<span>")
           .addClass("tweet-age")
-          .text(tweet.created_at)
+          .text(tweet.created_at),
+        $("<div>")
+          .addClass("icons")
+          .append(
+            $("<i>")
+              .addClass("tiny")
+              .addClass("material-icons")
+              .text("flag"),
+            $("<i>")
+              .addClass("tiny")
+              .addClass("material-icons")
+              .text("repeat"),
+            $("<i>")
+              .addClass("tiny")
+              .addClass("material-icons")
+              .text("favorite")
+          )
       )
     );
   return $tweet;
 }
 
+// Helper function to list formatted tweets on "timeline"
+// in the correct order: youngest tweet to oldest;
 function renderTweets(data) {
   $("#tweet-container").empty();
   data.forEach(tweet => {
@@ -39,8 +56,25 @@ function renderTweets(data) {
   });
 }
 
+// This function published the sorted, rendered tweets when called;
+function loadTweets() {
+  $.ajax({
+    type: "GET",
+    url: "/tweets"
+  }).done(function(response) {
+    renderTweets(response);
+  });
+}
+
+// The two functions below go together. First is to
+// check if the submitted tweet's length is valid
+// and the second is to display the right error message
+// when necessary;
 function tweetValidation(data) {
-  if (data.val().length === 0) {
+  if (
+    data.val().length === 0 ||
+    (data.val()[0] === " " || data.val()[1] === " ")
+  ) {
     errorDisplay("empty");
     return false;
   } else if (data.val().length > 140) {
@@ -62,15 +96,7 @@ function errorDisplay(errorType) {
   }
 }
 
-function loadTweets() {
-  $.ajax({
-    type: "GET",
-    url: "/tweets"
-  }).done(function(response) {
-    renderTweets(response);
-  });
-}
-
+// Dynamically creates a button in nav-bar when called;
 function createButton(nameTag) {
   const $button = $("<input>")
     .attr("id", nameTag)
@@ -80,9 +106,19 @@ function createButton(nameTag) {
 }
 
 $(document).ready(function() {
+  // We start by loading tweets that are already in the database
   loadTweets();
+  // Hide the compose tweet box
   $(".new-tweet").hide();
+  // Create a compose tweet button
   createButton("Compose");
+  // When the button is clicked; compose tweet box slides down
+  $("#Compose").on("click", function(event) {
+    $(".new-tweet").slideToggle(function() {
+      $("#tweet-area").focus();
+    });
+  });
+  // 1- When the tweet is submitted an AJAX post request is made
   $("#submit-tweet").on("submit", function(event) {
     event.preventDefault();
     if (tweetValidation($("#tweet-area"))) {
@@ -90,16 +126,15 @@ $(document).ready(function() {
         type: "POST",
         url: "/tweets",
         data: $(this).serialize()
-      }).done(function(response) {});
+      });
+      // Tweets in the database are reloaded to "timeline"
       loadTweets();
+      // Any error message displayed in tweet box is cleared
       errorDisplay(null);
+      // Tweet box form is reset
       $("#tweet-area").val("");
+      // Counter is reset back to 140
       $("#counter").text(140);
     }
-  });
-  $("#Compose").on("click", function(event) {
-    $(".new-tweet").slideToggle(function() {
-      $("#tweet-area").focus();
-    });
   });
 });
