@@ -32,6 +32,7 @@ function createTweetElement(tweet) {
 }
 
 function renderTweets(data) {
+  $("#tweet-container").empty();
   data.forEach(tweet => {
     let renderedTweet = createTweetElement(tweet);
     $("#tweet-container").prepend(renderedTweet);
@@ -90,12 +91,8 @@ $(document).ready(function() {
         url: "/tweets",
         data: $(this).serialize()
       }).done(function(response) {
-        $.ajax({
-          type: "GET",
-          url: "/tweets"
-        }).done(function(response) {
-          loadTweets(response);
-        });
+        // $("#tweet-container").empty();
+        loadTweets();
       });
       errorDisplay(null);
       $("#tweet-area").val("");
