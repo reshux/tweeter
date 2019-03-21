@@ -22,5 +22,5 @@ This repository has the working version of the project: Starter code is provided
 
 # Screenshots
 
-![timeline](https://imgur.com/uHLbzf5)
-![tweetBox](https://imgur.com/JUNgchA)
+![timeline](https://i.imgur.com/uHLbzf5.png)
+![tweetBox](https://i.imgur.com/JUNgchA.png)
