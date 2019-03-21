@@ -52,15 +52,17 @@
             name="text"
             placeholder="What are you humming about?"
           ></textarea>
-          <input
-            id="tweet-button"
-            type="submit"
-            value="Tweet"
-            action="/tweets"
-            !disabled
-          />
-          <span id="counter">140</span>
-          <span id="msg-display"></span>
+          <div id="new-footer">
+            <input
+              id="tweet-button"
+              type="submit"
+              value="Tweet"
+              action="/tweets"
+              !disabled
+            />
+            <span id="counter">140</span>
+            <span id="msg-display"></span>
+          </div>
         </form>
       </section>
       <section id="tweet-container"></section>

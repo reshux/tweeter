@@ -23,8 +23,14 @@
 }
 
 #nav-bar #Compose {
+  font-size: 1.5em;
+  border-radius: 10px;
   float: right;
   vertical-align: inherit;
   height: 50px;
   margin-top: 15px;
+  background-color: white;
+  color: #00a087;
+  border: 2px solid black;
+  width: 150px;
 }

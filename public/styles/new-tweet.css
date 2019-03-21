@@ -18,14 +18,25 @@
   width: 100%;
 }
 
-.container .new-tweet #counter {
-  /* float: right; */
+.container .new-tweet #new-footer #counter {
+  order: 3;
   font-style: italic;
+  padding-top: 3px;
   padding-right: 10px;
-  float: right;
 }
 
-.container .new-tweet input {
-  /* float: left; */
+.container .new-tweet #new-footer input {
+  order: 1;
   margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.container .new-tweet #new-footer #msg-display {
+  padding-top: 3px;
+  order: 2;
+  flex-grow: 3;
+}
+
+.container #new-footer {
+  display: flex;
 }

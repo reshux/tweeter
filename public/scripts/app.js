@@ -90,10 +90,8 @@ $(document).ready(function() {
         type: "POST",
         url: "/tweets",
         data: $(this).serialize()
-      }).done(function(response) {
-        // $("#tweet-container").empty();
-        loadTweets();
-      });
+      }).done(function(response) {});
+      loadTweets();
       errorDisplay(null);
       $("#tweet-area").val("");
       $("#counter").text(140);
