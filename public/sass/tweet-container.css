@@ -36,6 +36,7 @@ article.tweet p {
   margin-right: 10px;
   text-align: left;
   margin-bottom: 0px;
+  word-break: break-word;
 }
 article.tweet footer {
   height: 42px;

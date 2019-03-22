@@ -3,7 +3,6 @@
 const userHelper = require("../lib/util/user-helper");
 const express = require("express");
 const tweetsRoutes = express.Router();
-const moment = require("moment");
 
 module.exports = function(DataHelpers) {
   tweetsRoutes.get("/", function(req, res) {
@@ -30,7 +29,7 @@ module.exports = function(DataHelpers) {
       content: {
         text: req.body.text
       },
-      created_at: moment().format("llll")
+      created_at: Date.now()
     };
 
     DataHelpers.saveTweet(tweet, err => {
