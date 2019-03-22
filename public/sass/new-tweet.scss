@@ -1,0 +1,36 @@
+.container .new-tweet {
+  width: auto;
+  margin: 2em;
+  background-color: #eee;
+  border: 1px solid gray;
+  border-radius: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  h2 {
+    text-align: left;
+    width: 100%;
+    border-bottom: 1px solid black;
+  }
+  textarea {
+    width: 100%;
+  }
+  #new-footer {
+    display: flex;
+    #counter {
+      order: 3;
+      font-style: italic;
+      padding-top: 3px;
+      padding-right: 10px;
+    }
+    input {
+      order: 1;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    #msg-display {
+      padding-top: 3px;
+      order: 2;
+      flex-grow: 3;
+    }
+  }
+}

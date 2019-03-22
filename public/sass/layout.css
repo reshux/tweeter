@@ -1,0 +1,40 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/*
+* Global layout stuff
+*/
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  margin: auto;
+  color: #244751;
+  background-color: #eee;
+}
+body main {
+  height: min-content;
+  margin: auto;
+  width: 450px;
+  padding-top: 80px;
+  background-color: white;
+  text-align: center;
+  z-index: -1;
+}
+
+.clearfix::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+/*
+   * Additional CSS can be defined below or in other CSS files, as per instructions
+   */
+
+/*# sourceMappingURL=layout.css.map */

@@ -1,0 +1,68 @@
+article.tweet {
+  height: auto;
+  width: -webkit-fill-available;
+  margin: 2em;
+  margin-top: 10px;
+  background-color: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  opacity: 0.5;
+  header {
+    height: 60px;
+    background-color: #eee;
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    img.avatar {
+      float: left;
+      margin: 5px;
+      border-radius: 8px;
+    }
+    h2.username {
+      float: left;
+      vertical-align: inherit;
+    }
+    span.handle {
+      float: right;
+      vertical-align: middle;
+      padding-top: 25px;
+      padding-right: 10px;
+    }
+  }
+  p {
+    height: 80px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: left;
+    margin-bottom: 0px;
+  }
+  footer {
+    height: 42px;
+    width: 100%;
+    border-top: 1px solid #eee;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    span.tweet-age {
+      float: left;
+      padding-top: 10px;
+      padding-left: 10px;
+    }
+  }
+  .icons {
+    opacity: 0;
+    float: right;
+    padding-top: 7px;
+    padding-right: 10px;
+    transition: all 100ms linear;
+  }
+  .material-icons {
+    color: #00a087;
+  }
+  &:hover {
+    border: 1px solid black;
+    opacity: 1;
+    .icons {
+      opacity: 1;
+    }
+  }
+}

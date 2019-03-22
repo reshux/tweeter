@@ -19,6 +19,7 @@ This repository has the working version of the project: Starter code is provided
 - Chance
 - Mongo DB
 - Moment
+- Sass
 
 # Screenshots
 
