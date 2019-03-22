@@ -2,6 +2,7 @@
 // to display properly. I know that we could use ES6 conventions
 // to simply carryover some HTML code but I wanted to do it this
 // way to practice jQuery;
+// const moment = require("./moment.js");
 
 function createTweetElement(tweet) {
   const $tweet = $("<article>")
@@ -24,7 +25,7 @@ function createTweetElement(tweet) {
       $("<footer>").append(
         $("<span>")
           .addClass("tweet-age")
-          .text(tweet.created_at),
+          .text(moment(tweet.created_at).fromNow()),
         $("<div>")
           .addClass("icons")
           .append(
