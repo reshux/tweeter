@@ -57,16 +57,6 @@ function renderTweets(data) {
   });
 }
 
-// This function published the sorted, rendered tweets when called;
-function loadTweets() {
-  $.ajax({
-    type: "GET",
-    url: "/tweets"
-  }).done(function(response) {
-    renderTweets(response);
-  });
-}
-
 // The two functions below go together. First is to
 // check if the submitted tweet's length is valid
 // and the second is to display the right error message
@@ -108,7 +98,12 @@ function createButton(nameTag) {
 
 $(document).ready(function() {
   // We start by loading tweets that are already in the database
-  loadTweets();
+  $.ajax({
+    type: "GET",
+    url: "/tweets"
+  }).done(function(response) {
+    renderTweets(response);
+  });
   // Hide the compose tweet box
   $(".new-tweet").hide();
   // Create a compose tweet button
@@ -127,9 +122,15 @@ $(document).ready(function() {
         type: "POST",
         url: "/tweets",
         data: $(this).serialize()
+      }).done(function(response) {
+        $.ajax({
+          type: "GET",
+          url: "/tweets"
+        }).done(function(response) {
+          renderTweets(response);
+        });
       });
       // Tweets in the database are reloaded to "timeline"
-      loadTweets();
       // Any error message displayed in tweet box is cleared
       errorDisplay(null);
       // Tweet box form is reset
